@@ -1,0 +1,5 @@
+---
+- name: Set up digital ocean dev machine
+  hosts: localhost
+  roles:
+  - dev

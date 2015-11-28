@@ -1,0 +1,13 @@
+---
+
+# file: {{ name }}/tasks/main.yml
+- name: Install base packages
+  action: apt name={{ item }} update_cache=yes state=latest
+  with_items:
+    - tree
+    - docker
+    - watch
+    - htop
+    - git
+- include: docker-compose.yml
+- include: git.yml
