@@ -1,5 +1,3 @@
 ---
-# file : {{ role_name }}/vars/main.yml
-
-var_one: 1
-var_two: 2
+dev_name: Brad Moore
+dev_email: brad@bradmoore.org

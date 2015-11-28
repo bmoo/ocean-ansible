@@ -1,3 +1,3 @@
 ---
 - name: Adding personalized Git config
-  file: src=.gitconfig dest=/root/.gitconfig
+  template: src=gitconfig dest=/root/.gitconfig
