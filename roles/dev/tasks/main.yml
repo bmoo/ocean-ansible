@@ -1,13 +1,12 @@
 ---
-
-# file: {{ name }}/tasks/main.yml
+- set_fact: golang_version=1.5.1
 - name: Install base packages
-  action: apt name={{ item }} update_cache=yes state=latest
+  action: apt name={{ item }} state=latest
   with_items:
     - tree
-    - docker
     - watch
     - htop
     - git
-- include: docker-compose.yml
+- include: docker.yml
 - include: git.yml
+- include: go.yml

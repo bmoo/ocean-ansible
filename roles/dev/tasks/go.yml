@@ -1,0 +1,15 @@
+---
+- name: Download Go
+  get_url: url=http://golang.org/dl/go{{ golang_version }}.linux-amd64.tar.gz
+           dest=/usr/local/src/go{{ golang_version }}.linux-amd64.tar.gz
+
+- name: Extract and install Go
+  command: tar -C /usr/local -xzf /usr/local/src/go{{ golang_version }}.linux-amd64.tar.gz
+           creates=/usr/local/bin/go
+
+- name: Symlink Go into /usr/local/bin
+  file: src=/usr/local/go/bin/{{ item }} dest=/usr/local/bin/{{ item }} state=link
+  with_items:
+    - go
+    - godoc
+    - gofmt

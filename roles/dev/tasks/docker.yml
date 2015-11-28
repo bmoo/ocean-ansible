@@ -1,0 +1,32 @@
+---
+- name: Installing APT packages
+  action: apt name={{ item }} state=present
+  with_items:
+  - python-setuptools
+  - python-pycurl
+
+- name: Installing dependencies
+  easy_install:
+    name: pip
+
+- name: Installing Ansible PIP dependencies
+  action: pip name=docker-compose state=latest
+
+- name: Setting permissions
+  file:
+    path: /usr/local/bin/docker-compose
+    group: root
+    owner: root
+    mode: "0755"
+
+- name: Add Docker repository key
+  shell: curl -sSL https://get.docker.com/gpg | apt-key add -
+
+- name: Add Docker repository and update apt cache
+  apt_repository:
+    repo: deb https://apt.dockerproject.org/repo ubuntu-trusty main
+    update_cache: yes
+    state: present
+
+- name: Install docker package
+  action: apt name=docker-engine state=latest force=yes
